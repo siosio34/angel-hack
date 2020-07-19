@@ -249,8 +249,6 @@ class AgoraCanvas extends React.Component {
 
   }
 
-
-
   handleMic = (e) => {
     e.currentTarget.classList.toggle('off')
     this.localStream.isAudioOn() ?
@@ -364,13 +362,6 @@ class AgoraCanvas extends React.Component {
       <div id="ag-canvas" style={style}>
         <div className="ag-btn-group">
           {exitBtn}
-          {videoControlBtn}
-          {audioControlBtn}
-          {/* <span className="ag-btn shareScreenBtn" title="Share Screen">
-                        <i className="ag-icon ag-icon-screen-share"></i>
-                    </span> */}
-          {switchDisplayBtn}
-          {hideRemoteBtn}
         </div>
       </div>
     )

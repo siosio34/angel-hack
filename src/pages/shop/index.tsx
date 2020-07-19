@@ -5,6 +5,7 @@ import { Input, Divider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { ShopActionCreators } from "store/shop/action";
 import { RootState } from "store/configureStore";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
@@ -18,6 +19,10 @@ const ShopPage: React.FC<Props> = () => {
   const stores = useSelector((state: RootState) => state.shop.store.stores);
 
   const { all, live } = stores;
+
+  console.log(
+    all.filter((item) => live.some((liveItem) => liveItem.storeId === item._id))
+  );
 
   return (
     <div style={{ display: "flex", width: "100%", flexDirection: "column" }}>
@@ -41,14 +46,23 @@ const ShopPage: React.FC<Props> = () => {
 
         <div style={{ display: "flex" }}>
           {all
-            .filter((item) => live.includes(item._id))
+            .filter((item) =>
+              live.some((liveItem) => liveItem.storeId === item._id)
+            )
             .map((item, index) => (
-              <Card
-                key={`item_live${index}`}
-                style={{ width: 250, height: 250, marginRight: 16 }}
+              <Link
+                to={`/shops/streeming/${
+                  live.find((liveItem) => liveItem.storeId === item._id)
+                    ?.channelName
+                }`}
               >
-                {item.name}
-              </Card>
+                <Card
+                  key={`item_live${index}`}
+                  style={{ width: 250, height: 250, marginRight: 16 }}
+                >
+                  {item.name}
+                </Card>
+              </Link>
             ))}
         </div>
 
@@ -56,12 +70,14 @@ const ShopPage: React.FC<Props> = () => {
         <Title level={2}>영업중 가게</Title>
         <div style={{ display: "flex" }}>
           {all.map((item, index) => (
-            <Card
-              key={`item${index}`}
-              style={{ width: 250, height: 250, marginRight: 16 }}
-            >
-              {item.name}
-            </Card>
+            <Link to={`/shops/${item._id}`}>
+              <Card
+                key={`item${index}`}
+                style={{ width: 250, height: 250, marginRight: 16 }}
+              >
+                {item.name}
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

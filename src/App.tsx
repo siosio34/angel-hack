@@ -17,6 +17,9 @@ import SignInPage from "pages/signin";
 import SignUpPage from "pages/signup";
 import ShopPage from "pages/shop";
 
+import ShopDetailPage from "pages/shopDetail";
+import Streeming from "pages/streemming";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -34,8 +37,16 @@ function App() {
             <Route path="/signup" exact>
               <SignUpPage />
             </Route>
-            <AuthRoute path="/shops">
+            <AuthRoute path="/shops" exact>
               <ShopPage />
+            </AuthRoute>
+
+            <AuthRoute path="/shops/:id" exact>
+              <ShopDetailPage />
+            </AuthRoute>
+
+            <AuthRoute path="/shops/streeming/:id" exact>
+              <Streeming />
             </AuthRoute>
           </Switch>
         </RootPage>

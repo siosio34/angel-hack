@@ -1,7 +1,7 @@
 export interface StoreResponse {
   stores: {
     all: Live[];
-    live: number[]
+    live: LiveChannel[];
   };
 }
 
@@ -12,6 +12,12 @@ export interface Live {
   category: string;
   _id: number;
   menu: Menu[];
+}
+
+export interface LiveChannel {
+  storeId: number;
+  channelName: string;
+  startTimeStamp: number;
 }
 
 export interface Menu {
