@@ -16,7 +16,7 @@ const Button: React.FC<Props> = (props) => {
             {...props}
             style={{
                 ...props.style,
-                borderRadius: 30,
+                borderRadius: 10,
                 height: props.size
                     ? ButtonSize[props.size]
                     : ButtonSize['middle'],

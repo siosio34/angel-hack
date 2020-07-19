@@ -29,6 +29,7 @@ function* signUpSaga(
 ) {
   try {
     const response: User = yield call(AccountAPI.signUp, action.payload);
+    console.log("Response", response)
 
     const { token } = response;
 

@@ -15,6 +15,7 @@ import RootPage from "pages/root";
 import AuthRoute from "components/authRoute";
 import SignInPage from "pages/signin";
 import SignUpPage from "pages/signup";
+import ShopPage from "pages/shop";
 
 function App() {
   const store = configureStore();
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/signup" exact>
               <SignUpPage />
+            </Route>
+            <Route path="/shops">
+              <ShopPage />
             </Route>
           </Switch>
         </RootPage>
