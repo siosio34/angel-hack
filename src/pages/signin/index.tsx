@@ -10,10 +10,10 @@ import { Link } from "react-router-dom";
 const SignInPage: React.FC = () => {
   const dispatch = useDispatch();
   const onFinish = (values: Store) => {
-    const { username, password } = values;
+    const { userName, password } = values;
     dispatch(
       AccountActionCreators.signIn.request({
-        username,
+        userName,
         password,
       })
     );
@@ -31,14 +31,14 @@ const SignInPage: React.FC = () => {
     >
       <Form onFinish={onFinish}>
         <Form.Item
-          name="username"
+          name="userName"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input placeholder="username" />
+          <Input placeholder="userName" />
         </Form.Item>
         <Form.Item
           name="password"

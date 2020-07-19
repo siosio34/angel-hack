@@ -1,14 +1,20 @@
 import API from "../utils/API";
 import { User } from "models/user.model";
 
+export interface AuthResponse {
+  access_token: string;
+  message: string;
+  refresh_token: string;
+}
+
 export interface SignInRequestBody {
-  username: string;
+  userName: string;
   password: string;
 }
 
 const prefix = "/auth";
 
-export const signIn = (body: SignInRequestBody): Promise<User> => {
+export const signIn = (body: SignInRequestBody): Promise<AuthResponse> => {
   return API.post(
     `${prefix}/signIn`,
     { ...body },
@@ -17,12 +23,13 @@ export const signIn = (body: SignInRequestBody): Promise<User> => {
 };
 
 export interface SignUpRequestBody {
-  username: string;
+  userName: string;
   password: string;
   phoneNumber: string;
+  address: string;
 }
 
-export const signUp = (body: SignUpRequestBody): Promise<User> => {
+export const signUp = (body: SignUpRequestBody): Promise<AuthResponse> => {
   return API.post(
     `${prefix}/signUp`,
     { ...body },

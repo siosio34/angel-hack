@@ -1,20 +1,26 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { ShopActionCreators } from "./action";
 
-import { Order } from "models/order.model";
+import { Order, Live, Rest } from "models/order.model";
+import { StoreResponse } from "models/shop.model";
 
 // XXXX CRETE_ASYNC_ACTION 만들어야됨.
 interface ShopStore {
-  items?: [];
+  store: StoreResponse;
 }
 
 const initialState: ShopStore = {
-  items: [],
+  store: {
+    stores: {
+      all: [],
+      live: [],
+    },
+  },
 };
 
 const shopReducer = createReducer(initialState, (builder) => {
   builder.addCase(ShopActionCreators.getAll.success, (state, action) => {
-    state.items = action.payload;
+    state.store.stores = action.payload.stores;
   });
 });
 

@@ -7,7 +7,7 @@ const Card: React.FC<CardProps> = (props) => {
     return (
         <AntdCard
             {...props}
-            style={{ ...props.style, borderRadius: 30, cursor: 'pointer' }}
+            style={{ ...props.style, borderRadius: 15, cursor: 'pointer' }}
         >
             {props.children}
         </AntdCard>

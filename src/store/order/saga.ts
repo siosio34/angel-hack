@@ -4,16 +4,14 @@ import { OrderActionTypes, OrderActionCreators } from "./action";
 import { push } from "connected-react-router";
 import { AccountAPI } from "apis";
 import { User } from "models/user.model";
+import orderApi from "apis/order.api";
+import { Order } from "models/order.model";
 
 function* getAllSaga(
   action: ReturnType<typeof OrderActionCreators.getAll.request>
 ) {
   try {
-    // const response: User = yield call(AccountAPI.signIn, action.payload);
-
-    // const { token } = response;
-
-    // localStorage.setItem("access_token", token);
+    const response: Order = yield call(orderApi.getAll);
 
     yield put(OrderActionCreators.getAll.success({}));
 
@@ -23,8 +21,6 @@ function* getAllSaga(
   }
 }
 
-const orderSaga = [
-  takeLatest(OrderActionCreators.getAll.request, getAllSaga),
-];
+const orderSaga = [takeLatest(OrderActionCreators.getAll.request, getAllSaga)];
 
 export default orderSaga;

@@ -1,5 +1,5 @@
 import createAsyncAction from "../../utils/createAsyncAction";
-import { SignInRequestBody, SignUpRequestBody } from "apis/account.api";
+import { SignInRequestBody, SignUpRequestBody, AuthResponse } from "apis/account.api";
 import { User } from "models/user.model";
 // import { LoginRequestBody, RegisterRequestBody } from 'apis/account';
 // import { User } from 'models/teacher';
@@ -12,6 +12,6 @@ export const AccountActionTypes = {
 };
 
 export const AccountActionCreators = {
-  signIn: createAsyncAction<SignInRequestBody, User>(AccountActionTypes.SIGNIN),
-  signUp: createAsyncAction<SignUpRequestBody, User>(AccountActionTypes.SIGNUP),
+  signIn: createAsyncAction<SignInRequestBody, AuthResponse>(AccountActionTypes.SIGNIN),
+  signUp: createAsyncAction<SignUpRequestBody, AuthResponse>(AccountActionTypes.SIGNUP),
 };

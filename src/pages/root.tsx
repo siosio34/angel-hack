@@ -23,14 +23,17 @@ const RootPage: React.FC = (props) => {
         }}
       >
         <img src={Logo} alt="Logo" />
-        <div>
-          <a href="/signin" style={{ color: "#ffffff" }}>
-            로그인
-          </a>
-          <a href="/signup" style={{ marginLeft: 8, color: "#ffffff" }}>
-            회원가입
-          </a>
-        </div>
+
+        { !localStorage.getItem("access_token") && (
+          <div>
+            <a href="/signin" style={{ color: "#ffffff" }}>
+              로그인
+            </a>
+            <a href="/signup" style={{ marginLeft: 8, color: "#ffffff" }}>
+              회원가입
+            </a>
+          </div>
+        )}
       </Header>
       <Content style={{ display: "flex" }}>{props.children}</Content>
     </Layout>

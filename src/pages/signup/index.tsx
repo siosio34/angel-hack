@@ -11,7 +11,7 @@ const SignUpPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const onFinish = (values: Store) => {
-    const { username, password, confirmPassword, phoneNumber } = values;
+    const { userName, password, confirmPassword, phoneNumber, address } = values;
 
     if (password !== confirmPassword) {
       message.error("패스워드가 일치하지않습니다.");
@@ -20,9 +20,10 @@ const SignUpPage: React.FC = () => {
 
     dispatch(
       AccountActionCreators.signUp.request({
-        username,
+        userName,
         password,
         phoneNumber,
+        address
       })
     );
   };
@@ -39,7 +40,7 @@ const SignUpPage: React.FC = () => {
     >
       <Form onFinish={(values) => onFinish(values)}>
         <Form.Item
-          name="username"
+          name="userName"
           rules={[
             {
               required: true,
@@ -79,6 +80,18 @@ const SignUpPage: React.FC = () => {
           ]}
         >
           <Input placeholder="전화번호를 입력하세요." />
+        </Form.Item>
+
+        <Form.Item
+          name="address"
+          rules={[
+            {
+              required: true,
+              message: "해당 필드를 입력하여 주세요."
+            },
+          ]}
+        >
+          <Input placeholder="주소를 입력하세요." />
         </Form.Item>
 
         <Form.Item>

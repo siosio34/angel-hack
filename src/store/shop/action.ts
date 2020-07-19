@@ -1,4 +1,5 @@
 import createAsyncAction from "../../utils/createAsyncAction";
+import { StoreResponse } from "models/shop.model";
 
 const prefix = "Shop";
 
@@ -7,5 +8,5 @@ export const ShopActionTypes = {
 };
 
 export const ShopActionCreators = {
-  getAll: createAsyncAction<undefined, any>(ShopActionTypes.GET_ALL),
+  getAll: createAsyncAction<undefined, StoreResponse>(ShopActionTypes.GET_ALL),
 };

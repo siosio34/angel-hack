@@ -17,6 +17,9 @@ import SignInPage from "pages/signin";
 import SignUpPage from "pages/signup";
 import ShopPage from "pages/shop";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function App() {
   const store = configureStore();
 
@@ -31,9 +34,9 @@ function App() {
             <Route path="/signup" exact>
               <SignUpPage />
             </Route>
-            <Route path="/shops">
+            <AuthRoute path="/shops">
               <ShopPage />
-            </Route>
+            </AuthRoute>
           </Switch>
         </RootPage>
       </ConnectedRouter>

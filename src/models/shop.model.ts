@@ -1,6 +1,8 @@
-export interface Stores {
-  live: Live[];
-  rest: Live[];
+export interface StoreResponse {
+  stores: {
+    all: Live[];
+    live: number[]
+  };
 }
 
 export interface Live {
@@ -8,7 +10,7 @@ export interface Live {
   address: string;
   phoneNumber: string;
   category: string;
-  channelId: string;
+  _id: number;
   menu: Menu[];
 }
 
