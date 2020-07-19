@@ -7,8 +7,8 @@ const parsingEmptyValueParams = (params: any) =>
 
 const API = axios.create();
 
-// API.defaults.baseURL =
-//     process.env.server || 'https://staging.glamtutor.com/api';
+API.defaults.baseURL =
+    process.env.server || 'http://ec2-13-124-58-180.ap-northeast-2.compute.amazonaws.com:5000';
 
 API.interceptors.request.use(
     (config) => {
