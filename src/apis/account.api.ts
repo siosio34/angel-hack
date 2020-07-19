@@ -10,7 +10,7 @@ const prefix = "/auth";
 
 export const signIn = (body: SignInRequestBody): Promise<User> => {
   return API.post(
-    `${prefix}/signIn/`,
+    `${prefix}/signIn`,
     { ...body },
     { headers: { isAuth: false } }
   );
@@ -24,7 +24,7 @@ export interface SignUpRequestBody {
 
 export const signUp = (body: SignUpRequestBody): Promise<User> => {
   return API.post(
-    `${prefix}/signUp/`,
+    `${prefix}/signUp`,
     { ...body },
     { headers: { isAuth: false } }
   );

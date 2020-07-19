@@ -1,5 +1,5 @@
 import createAsyncAction from "../../utils/createAsyncAction";
-import { SignInRequestBody, SignUpRequestBody } from "apis/account";
+import { SignInRequestBody, SignUpRequestBody } from "apis/account.api";
 import { User } from "models/user.model";
 // import { LoginRequestBody, RegisterRequestBody } from 'apis/account';
 // import { User } from 'models/teacher';
