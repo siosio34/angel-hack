@@ -2,57 +2,47 @@ import { takeLatest, call, put } from "redux-saga/effects";
 import { AccountActionCreators } from "./action";
 
 import { push } from "connected-react-router";
+import { AccountAPI } from "apis";
+import { User } from "models/user.model";
 
-// function* loginSaga(
-//   action: ReturnType<typeof AccountActionCreators.login.request>
-// ) {
-//   try {
-//     const response: LoginResponse = yield call(
-//       AccountAPI.login,
-//       action.payload
-//     );
+function* signInSaga(
+  action: ReturnType<typeof AccountActionCreators.signIn.request>
+) {
+  try {
+    const response: User = yield call(AccountAPI.signIn, action.payload);
 
-//     const { access_token, refresh_token, user } = response;
+    const { token } = response;
 
-//     localStorage.setItem("access_token", access_token);
-//     localStorage.setItem("refresh_token", refresh_token);
+    localStorage.setItem("access_token", token);
 
-//     yield put(AccountActionCreators.login.success({ user }));
-//     yield put(push("/main"));
+    yield put(AccountActionCreators.signIn.success(response));
+    yield put(push("/main"));
 
-//     // yield put()
-//   } catch (error) {
-//     yield put(AccountActionCreators.login.failure(error));
-//   }
-// }
+    // yield put()
+  } catch (error) {
+    yield put(AccountActionCreators.signIn.failure(error));
+  }
+}
 
-// function* registerSaga(
-//   action: ReturnType<typeof AccountActionCreators.register.request>
-// ) {
-//   try {
-//     const response = yield call(AccountAPI.register, action.payload);
-//     yield put(AccountActionCreators.register.success({}));
-//   } catch (error) {
-//     yield put(AccountActionCreators.register.failure(error));
-//   }
-// }
+function* signUpSaga(
+  action: ReturnType<typeof AccountActionCreators.signUp.request>
+) {
+  try {
+    const response: User = yield call(AccountAPI.signUp, action.payload);
 
-// function* getUserSaga(
-//   action: ReturnType<typeof AccountActionCreators.getUser.request>
-// ) {
-//   try {
-//     const response: User = yield call(AccountAPI.getUser);
+    const { token } = response;
 
-//     yield put(AccountActionCreators.getUser.success(response));
-//   } catch (error) {
-//     yield put(AccountActionCreators.getUser.failure(error));
-//   }
-// }
+    localStorage.setItem("access_token", token);
 
-// const accountSaga = [
-//   takeLatest(AccountActionCreators.login.request, loginSaga),
-//   takeLatest(AccountActionCreators.register.request, registerSaga),
-//   takeLatest(AccountActionCreators.getUser.request, getUserSaga),
-// ];
+    yield put(AccountActionCreators.signUp.success(response));
+  } catch (error) {
+    yield put(AccountActionCreators.signUp.failure(error));
+  }
+}
+
+const accountSaga = [
+  takeLatest(AccountActionCreators.signIn.request, signInSaga),
+  takeLatest(AccountActionCreators.signUp.request, signUpSaga),
+];
 
 export default accountSaga;

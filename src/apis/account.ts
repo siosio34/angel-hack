@@ -1,49 +1,36 @@
 import API from "../utils/API";
+import { User } from "models/user.model";
 
-export interface LoginRequestBody {
+export interface SignInRequestBody {
   username: string;
   password: string;
-}
-
-export interface AuthAPIResponse {
-  username: string;
-  phoneNumber: string;
-  id: number;
-  token: string;
 }
 
 const prefix = "/auth";
 
-export const login = (body: LoginRequestBody): Promise<AuthAPIResponse> => {
+export const signIn = (body: SignInRequestBody): Promise<User> => {
   return API.post(
-    `${prefix}/login/`,
+    `${prefix}/signIn/`,
     { ...body },
     { headers: { isAuth: false } }
   );
 };
 
-export interface RegisterRequestBody {
+export interface SignUpRequestBody {
   username: string;
   password: string;
   phoneNumber: string;
 }
 
-export const register = (
-  body: RegisterRequestBody
-): Promise<AuthAPIResponse> => {
+export const signUp = (body: SignUpRequestBody): Promise<User> => {
   return API.post(
-    `${prefix}/registration/`,
+    `${prefix}/signUp/`,
     { ...body },
     { headers: { isAuth: false } }
   );
 };
 
-export const getUser = () => {
-  return API.get(`${prefix}/user/`);
-};
-
 export default {
-  login,
-  register,
-  getUser,
+  signIn,
+  signUp,
 };

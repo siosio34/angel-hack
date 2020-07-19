@@ -1,21 +1,17 @@
-import createAsyncAction from '../../utils/createAsyncAction';
+import createAsyncAction from "../../utils/createAsyncAction";
+import { SignInRequestBody, SignUpRequestBody } from "apis/account";
+import { User } from "models/user.model";
 // import { LoginRequestBody, RegisterRequestBody } from 'apis/account';
 // import { User } from 'models/teacher';
 
-const prefix = 'ACCOUNT';
+const prefix = "AUTH";
 
 export const AccountActionTypes = {
-    LOGIN: `${prefix}/LOGIN`,
-    REGISTER: `${prefix}/REGISTER`,
-    GetUser: `${prefix}/GetUser`,
+  SIGNIN: `${prefix}/SIGNIN`,
+  SIGNUP: `${prefix}/SIGNUP`,
 };
 
 export const AccountActionCreators = {
-    // login: createAsyncAction<LoginRequestBody, any>(AccountActionTypes.LOGIN),
-    // register: createAsyncAction<RegisterRequestBody, any>(
-    //     AccountActionTypes.REGISTER,
-    // ),
-    // getUser: createAsyncAction<undefined, User>(
-    //     AccountActionTypes.GetUser,
-    // ),
+  signIn: createAsyncAction<SignInRequestBody, User>(AccountActionTypes.SIGNIN),
+  signUp: createAsyncAction<SignUpRequestBody, User>(AccountActionTypes.SIGNUP),
 };
