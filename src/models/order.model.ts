@@ -1,4 +1,4 @@
-export interface Orders {
+export interface Order {
   live: Live[];
   rest: Rest[];
 }
