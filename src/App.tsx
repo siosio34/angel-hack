@@ -13,6 +13,8 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "store/rootReducer";
 import RootPage from "pages/root";
 import AuthRoute from "components/authRoute";
+import SignInPage from "pages/signin";
+import SignUpPage from "pages/signup";
 
 function App() {
   const store = configureStore();
@@ -21,7 +23,14 @@ function App() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <RootPage>
-          <Switch></Switch>
+          <Switch>
+            <Route path="/signin" exact>
+              <SignInPage />
+            </Route>
+            <Route path="/signup" exact>
+              <SignUpPage />
+            </Route>
+          </Switch>
         </RootPage>
       </ConnectedRouter>
     </Provider>
