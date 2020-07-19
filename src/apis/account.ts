@@ -1,18 +1,20 @@
 import API from "../utils/API";
 
 export interface LoginRequestBody {
-  email: string;
+  username: string;
   password: string;
 }
 
-export interface LoginResponse {
-  access_token: string;
-  refresh_token: string;
+export interface AuthAPIResponse {
+  username: string;
+  phoneNumber: string;
+  id: number;
+  token: string;
 }
 
-const prefix = "/accounts";
+const prefix = "/auth";
 
-export const login = (body: LoginRequestBody): Promise<LoginResponse> => {
+export const login = (body: LoginRequestBody): Promise<AuthAPIResponse> => {
   return API.post(
     `${prefix}/login/`,
     { ...body },
@@ -21,13 +23,14 @@ export const login = (body: LoginRequestBody): Promise<LoginResponse> => {
 };
 
 export interface RegisterRequestBody {
-  email: string;
-  password: string;
-  phone_number: string;
   username: string;
+  password: string;
+  phoneNumber: string;
 }
 
-export const register = (body: RegisterRequestBody) => {
+export const register = (
+  body: RegisterRequestBody
+): Promise<AuthAPIResponse> => {
   return API.post(
     `${prefix}/registration/`,
     { ...body },
